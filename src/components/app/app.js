@@ -8,14 +8,22 @@ import SearchField from '../search-field/search-field';
 import './app.css'
 
 
+
 function App() {
+
+   const data = [
+      { name: 'Vitalii H.', salary: 500, increase: true },
+      { name: 'Oleg R.', salary: 750, increase: false },
+      { name: 'Alex O.', salary: 1200, increase: true }
+   ]
+
    return <div className='app'>
       <AppInfo />
       <div className="search-field">
          <SearchField />
          <AppFilter />
       </div>
-      <EmployeesList />
+      <EmployeesList data={data} />
       <EmployeesAddForm />
    </div>
 }

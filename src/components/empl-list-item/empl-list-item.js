@@ -1,10 +1,15 @@
 import './empl-list-item.css'
+import classNames from 'classnames'
 
-const EmployeesListItem = () => {
+
+
+const EmployeesListItem = ({ name, salary, increase }) => {
+
    return (
-      <li className="list-group-item d-flex justify-content-between">
-         <span className="list-group-item-label">Vitalii Gavryliv</span>
-         <input type="text" className='list-group-item-input' defaultValue='1000$' />
+      <li className={classNames('list-group-item', 'd-flex', 'justify-content-between', { increase, })
+      }>
+         <span className="list-group-item-label">{name}</span>
+         <input type="text" className='list-group-item-input' defaultValue={`${salary} $`} />
          <div className='d-flex justify-content-center align-items-center'>
             <button type='button'
                className='btn-cookie btn-sm'>
@@ -17,8 +22,10 @@ const EmployeesListItem = () => {
             </button>
             <i className='fas fa-star'></i>
          </div>
-      </li>
+      </li >
    )
 }
 
 export default EmployeesListItem;
+
+// "list-group-item d-flex justify-content-between"
