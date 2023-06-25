@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 
 const EmployeesListItem = (props) => {
-   const { name, salary, onDelete, onToggleProp, increase, like } = props;
+   const { name, salary, onDelete, onToggleProp, increase, like, changeSalary, labelText } = props;
    return (
       <li className={
          classNames('list-group-item', 'd-flex', 'justify-content-between', { increase, like })
       } >
-         <span className="list-group-item-label" onClick={onToggleProp} data-toggle='like'>{name}</span>
-         <input type="text" className='list-group-item-input' defaultValue={`${salary} $`} />
+         <span className="list-group-item-label" aria-label={labelText} onKeyDown={onToggleProp} tabIndex='0' onClick={onToggleProp} data-toggle='like'>{name}</span>
+         <input type="text" className='list-group-item-input' defaultValue={`${salary} $`} onChange={(e) => changeSalary(e.target.value, name)} />
          <div className='d-flex justify-content-center align-items-center'>
             <button type='button'
                className='btn-cookie btn-sm'

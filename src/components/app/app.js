@@ -48,17 +48,21 @@ class App extends Component {
       })
    }
 
-   onToggleProp = (id, prop) => {
-      this.setState(({ data }) => ({
-         data: data.map(item => {
-            if (item.id === id) {
-               return { ...item, [prop]: !item[prop] }
-            } else {
-               return item
-            }
-         })
-      }))
+   onToggleProp = (e, id, prop) => {
+      if (e.type === 'click' || e.keyCode === 13) {
+         this.setState(({ data }) => ({
+            data: data.map(item => {
+               if (item.id === id) {
+                  return { ...item, [prop]: !item[prop] }
+               } else {
+                  return item
+               }
+            })
+         }))
+      }
    }
+
+
 
    searchEmpl = (items, term) => {
       if (term.length === 0) {
@@ -88,6 +92,18 @@ class App extends Component {
       this.setState({ filter });
    }
 
+   changeSalary = (newSalary, name) => {
+      this.setState(({ data }) => ({
+         data: data.map(person => {
+            if (person.name === name) {
+               const newClearSalary = newSalary.replace(/\D/g, '');
+               return { ...person, salary: newClearSalary }
+            }
+            return person
+         })
+      }))
+   }
+
    render() {
       const { data, term, filter } = this.state;
       const employees = this.state.data.length;
@@ -108,6 +124,7 @@ class App extends Component {
                data={visibleData}
                onDelete={this.deleteItem}
                onToggleProp={this.onToggleProp}
+               changeSalary={this.changeSalary}
             />
             <EmployeesAddForm onAdd={this.addItem} />
          </div >
